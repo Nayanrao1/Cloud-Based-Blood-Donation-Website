@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
-import { FaHome, FaUserPlus,BiSolidLogIn } from 'react-icons/fa';
+import { FaHome, FaUserPlus } from 'react-icons/fa';
 function Navbar() {
   return (
     <Wrapper>
@@ -13,7 +13,7 @@ function Navbar() {
         <a className="navbar-brand" href="#">
           <img src="/images/img/blood.png" alt="Logo" width={50} height={50} />{" "}
           {/* Replace with your logo image */}
-          <span class="portal-name">RactKosh</span>
+          <span class="portal-name">Nav-Pran</span>
         </a>
         {/* Portal Names on the right */}
         <div className="d-flex">
