@@ -1,0 +1,120 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+ 
+}
+.login-background{
+  background: #918f8f;
+  animation: backgroundChange 10s infinite;
+}
+@keyframes backgroundChange {
+  0% {
+      background-color: #f0f3e8; /* Start with this color */
+  }
+  25% {
+      background-color: #e5e6dc; /* Change to this color at 25% of the animation */
+  }
+  50% {
+      background-color: #e4f6ec; /* Change to this color at 50% of the animation */
+  }
+  75% {
+      background-color: #eee0e0; /* Change to this color at 75% of the animation */
+  }
+  100% {
+      background-color: #b2b1cf; /* Return to the initial color at the end of the animation */
+  }
+}
+
+/*------------ Login container ------------*/
+
+.box-area {
+  width: 930px;
+}
+
+/*------------ Right box ------------*/
+
+.right-box {
+  padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder {
+  font-size: 16px;
+}
+
+.rounded-4 {
+  border-radius: 20px;
+}
+
+.rounded-5 {
+  border-radius: 30px;
+}
+
+.left-beVerify {
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  height: 100vh;
+  /* Make the div take up the full viewport height */
+}
+
+.blood-size {
+  width: 250px;
+}
+
+/*------------ For small screens------------*/
+
+@media only screen and (max-width: 768px) {
+
+  .box-area {
+      margin: 0 10px;
+
+  }
+
+  /* .blood-size{
+      display: none;
+   } */
+  .left-box {
+      height: 100px;
+      overflow: hidden;
+  }
+
+  .right-box {
+      padding: 20px;
+  }
+
+  .left-box-media {
+      display: flex;
+      justify-content: center;
+      /* Horizontally center the child element */
+      align-items: center;
+      /* Vertically center the child element */
+      min-height: 100vh;
+  }
+
+  .blood-size {
+      width: 110px;
+  }
+}
+
+/* this is for navabar */
+.navbar {
+  min-height: 80px; /* Adjust the height as needed */
+}
+.navbar .d-flex .navbar-text {
+  margin-right: 20px; /* Adjust the margin as needed */
+  font-size: 1.5rem;
+  
+}
+.navbar-brand .portal-name {
+  font-size: 28px; /* Adjust the font size as needed */
+  font-size: 2rem;
+  font-weight: 500;
+}
+.navbar-brand img {
+  width: 80px; /* Adjust the width as needed */
+  height: 80px; /* Adjust the height as needed */
+}
