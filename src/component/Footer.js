@@ -6,8 +6,8 @@ function Footer() {
   return (
     <Wrapper>
       
-      <div class="footer-panel1">
-      Back to top
+      <div class="footer-panel1"><a href="#">Back to top</a>
+      
     </div>
 
     <div class="container-fluid bg-dark text-white py-4">

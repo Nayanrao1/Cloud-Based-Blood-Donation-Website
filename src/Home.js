@@ -1,12 +1,18 @@
-import React from 'react'
+import {useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import styled from 'styled-components';
-import { BiSolidDonateBlood ,BiSolidLogIn} from 'react-icons/bi';
-import {FaHospital , FaUserCircle } from 'react-icons/fa';
+import { BiSolidDonateBlood, BiSolidLogIn } from 'react-icons/bi';
+import { FaHospital, FaUserCircle } from 'react-icons/fa';
+import axios from "axios";
+import { useUserContext } from './context/usercontext';
+// import { useUserContext } from './context/usercontext';
 const Home = () => {
+const {isLoading,isError,users,donerusers} = useUserContext();
+console.log(isLoading);
+console.log(donerusers);
   return (
     <Wrapper>
       {/* Corosoul */}
@@ -48,57 +54,62 @@ const Home = () => {
 
       {/* two CARD */}
 
-      <div className="centered-container">
-        <div class="box-horijontal" style={{ background: "#2981c0" }}>
-          <div><h1>5677</h1></div>
-          <div><h4>Approved Camps</h4></div>
+
+      <div className='two-card'>
+        <div className="centered-container">
+          <div class="box-horijontal" style={{ background: "#2981c0" }}>
+            <div><h1>0</h1></div>
+            <div><h4>Approved Camps</h4></div>
+          </div>
+          <div class="box-horijontal" style={{ background: "#53884f" }}>
+            <div><h1>0</h1></div>
+            <div><h4>Blood unit collected</h4></div>
+          </div>
         </div>
-        <div class="box-horijontal" style={{ background: "#53884f" }}>
-          <div><h1>5677</h1></div>
-          <div><h4>Blood unit collected</h4></div>
+        <div className="centered-container">
+          <div class="box-horijontal" style={{ background: "#f5af19 " }}>
+            <div><h1>{donerusers.length}</h1></div>
+            <div><h4>Donors Registered </h4></div>
+          </div>
+          <div class="box-horijontal" style={{ background: "#4738c0 " }}>
+            <div><h1>{users.length}</h1></div>
+            <div><h4>Total Users</h4></div>
+          </div>
         </div>
       </div>
-      <div className="centered-container">
-        <div class="box-horijontal" style={{ background: "#f5af19 " }}>
-          <div><h1>5677</h1></div>
-          <div><h4>Donors Registered </h4></div>
-        </div>
-        <div class="box-horijontal" style={{ background: "#4738c0 " }}>
-          <div><h1>5677</h1></div>
-          <div><h4>Total Users</h4></div>
-        </div>
-      </div>
-
-
 
       {/* four container */}
-      <div className="centered-container">
-        <div class="box" style={{ background: "#941313" }}>
-          <div > <BiSolidDonateBlood size={40} color="white" /></div>
-          <div> <h5>Blood </h5> </div> 
-          <div> <h5>Availability </h5> </div> 
-          <div> <h5>Search </h5> </div> 
-        </div>
-        <div class="box" style={{ background: "#F12711" }}>
-          <div > <BiSolidLogIn size={40} color="white" /></div>
-          <div> <h5>Doner </h5> </div> 
-          <div> <h5>Login </h5> </div> 
-         
-        </div>
-        <div class="box" style={{ background: "#f5af19 " }}>
-          <div > <FaHospital size={40} color="white" /></div>
-          <div> <h5>Blood </h5> </div> 
-          <div> <h5>Donation </h5> </div> 
-          <div> <h5>Blood </h5> </div> 
-         
-        </div>
-        <div class="box" style={{ background: "#2981c0" }}>
-          <div > <FaUserCircle size={40} color="white" /></div>
-          <div> <h5>Register </h5> </div> 
-          <div> <h5>Voluntary </h5> </div> 
-          <div> <h5>BloodCamp </h5> </div>
+      <div className='four-card'>
+        <div className="centered-container">
+          <div class="box" style={{ background: "#941313" }}>
+            <div > <BiSolidDonateBlood size={40} color="white" /></div>
+            <div> <h5>Blood </h5> </div>
+            <div> <h5>Availability </h5> </div>
+            <div> <h5>Search </h5> </div>
           </div>
+          <div class="box" style={{ background: "#F12711" }}>
+            <div > <BiSolidLogIn size={40} color="white" /></div>
+            <div> <h5>Doner </h5> </div>
+            <div> <h5>Login </h5> </div>
+
+          </div>
+          <div class="box" style={{ background: "#f5af19 " }}>
+            <div > <FaHospital size={40} color="white" /></div>
+            <div> <h5>Blood </h5> </div>
+            <div> <h5>Donation </h5> </div>
+            <div> <h5>Blood </h5> </div>
+
+          </div>
+          <div class="box" style={{ background: "#2981c0" }}>
+            <div > <FaUserCircle size={40} color="white" /></div>
+            <div> <h5>Register </h5> </div>
+            <div> <h5>Voluntary </h5> </div>
+            <div> <h5>BloodCamp </h5> </div>
+          </div>
+        </div>
       </div>
+
+
     </Wrapper>
   )
 }
@@ -139,7 +150,7 @@ const Wrapper = styled.div`
   width: 300px;
   height: 150px;
   background-color: #007bff; /* Blue color, you can change it */
-  margin: 20px 60px 70px 60px;
+  margin: 40px 60px 40px 60px;
   border-radius: 10%;
   transition: all 0.3s;
   position: relative;
@@ -152,8 +163,17 @@ const Wrapper = styled.div`
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
+.two-card{
+  background-image: url('/images/img/img5.jpg');
+  background-size: cover; 
+  width: 100%;
+}
 
-
+.four-card{
+  background-image: url('/images/img/img6.jpg');
+  background-size: cover; 
+  width: 100%;
+}
 @media (max-width: 768px) {
   .centered-container {
       flex-direction: column; /* Stack boxes vertically on smaller screens */

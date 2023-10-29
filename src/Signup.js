@@ -1,8 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { NavLink } from "react-router-dom";
+import { NavLink , useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import axios from "axios";
 function Signup() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    bloodGroup: '',
+    isDoner: false
+  });
+
+  const handleChange = (e) => {
+    console.log(formData);
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const formDataOrdered = {
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    address: formData.address,
+    bloodGroup: formData.bloodGroup,
+    isDoner: formData.isDoner,
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataOrdered),
+      });
+
+      if (response.ok) {
+        // Handle a successful response (e.g., show a success message)
+        console.log('User created successfully.');
+      } else {
+        // Handle errors (e.g., show an error message)
+        console.error('Failed to create user.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    window.location.href = '/';
+  
+  };
+
+  
+
+
   return (
     <Wrapper>
       <div className='login-background'>
@@ -47,37 +105,92 @@ function Signup() {
                   <h2 className="text-success">Hello, Register Here</h2>
                   <p>We are happy to have you</p>
                 </div>
-                <div className="input-group mb-1">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg bg-light fs-6"
-                    placeholder="Your Good Name"
-                  />
-                </div>
-                <div className="input-group mb-1">
-                  <input
-                    type="email"
-                    className="form-control form-control-lg bg-light fs-6"
-                    placeholder="Email Address"
-                  />
-                </div>
-                <div className="input-group mb-1">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg bg-light fs-6"
-                    placeholder="Mobile Number"
-                  />
-                </div>
-                
-                <div className="input-group mb-3">
-                  <button className="btn btn-lg btn-primary w-100 fs-6">Login</button>
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg bg-light fs-6"
+                      placeholder="Your Good Name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg bg-light fs-6"
+                      placeholder="samplesanmple101"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg bg-light fs-6"
+                      placeholder="Mobile Number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg bg-light fs-6"
+                      placeholder="Address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="input-group mb-1">
+                    <select
+                      name="bloodGroup"
+                      value={formData.bloodGroup}
+                      onChange={handleChange}
+                      className='blood-group-select bg-light'
+                    >
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                  </div>
+
+                  <div className="input-group mb-3">
+                    <label className='check-box'>Are you a blood donor?</label>
+                    <input
+                      type="checkbox"
+                      name="isDoner"
+                      checked={formData.isDoner}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="input-group mb-3">
+                    <button className="btn btn-lg btn-primary w-100 fs-6">Register</button>
+                  </div>
+
+
+
+                </form>
+
+
                 <div className="input-group mb-3">
                   <button className="btn btn-lg btn-light w-100 fs-6">
                     <img src="/images/img/google.png" style={{ width: 20 }} className="me-2" />
                     <small>Sign In with Google</small>
                   </button>
                 </div>
+
                 <div className="row">
                   <small>
                     <NavLink to="/login">
@@ -98,7 +211,7 @@ function Signup() {
 const Wrapper = styled.div`
 .login-background{
     background: #f0d7d7;
-    animation: backgroundChange 10s infinite;
+    animation: backgroundChange 7s infinite;
   }
 
   /*------------ Login container ------------*/
@@ -174,6 +287,19 @@ const Wrapper = styled.div`
     .blood-size {
         width: 110px;
     }
+
+  }
+  .blood-group-select{
+    width: 100%;
+    padding: 10px;
+    border:none;
+    font-size: 16px;
+    outline: none;
+   
+  }
+  .check-box{
+    padding-left: 14px;
+    padding-right:15px;
   }
 
 `;
