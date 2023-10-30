@@ -15,25 +15,27 @@ function Navbar() {
           {/* Replace with your logo image */}
           <span class="portal-name">Nav-Pran</span>
         </a>
+
+
         {/* Portal Names on the right */}
         <div className="d-flex">
-          <NavLink to="/about">
+          <NavLink to="/about"  style={{ textDecoration: 'none' }}>
             <span className="navbar-text mr-5 text-danger">About</span>
           </NavLink>
 
-          <NavLink to="/about">
-            <span className="navbar-text mr-5 text-danger">Looking For a blood</span>
+          <NavLink to="/about" style={{ textDecoration: 'none' }}>
+            <span className="navbar-text mr-5 text-danger">Looking For blood</span>
           </NavLink>
 
-          <NavLink to="/">
+          <NavLink to="/" style={{ textDecoration: 'none' }}>
           <span className="navbar-text mr-5"><FaHome size={40} color="red" /> {/* Use an icon */}</span>
           </NavLink>
 
-          <NavLink to="/signup">
+          <NavLink to="/signup" style={{ textDecoration: 'none' }}>
           <span className="navbar-text mr-5"><FaUserPlus size={40} color="green" /> {/* Sign Up icon */}</span>
           </NavLink>
 
-          <NavLink to="/login">
+          <NavLink to="/login" style={{ textDecoration: 'none' }}>
             <span className="navbar-text mr-5 text-success">Login</span>
           </NavLink>
         </div>

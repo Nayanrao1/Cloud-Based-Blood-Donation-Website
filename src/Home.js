@@ -67,10 +67,13 @@ console.log(donerusers);
           </div>
         </div>
         <div className="centered-container">
-          <div class="box-horijontal" style={{ background: "#f5af19 " }}>
+          <NavLink to="/donerRegister" style={{ textDecoration: 'none' }}>
+            <div class="box-horijontal" style={{ background: "#f5af19 " }}>
             <div><h1>{donerusers.length}</h1></div>
             <div><h4>Donors Registered </h4></div>
           </div>
+          </NavLink>
+          
           <div class="box-horijontal" style={{ background: "#4738c0 " }}>
             <div><h1>{users.length}</h1></div>
             <div><h4>Total Users</h4></div>
@@ -87,18 +90,19 @@ console.log(donerusers);
             <div> <h5>Availability </h5> </div>
             <div> <h5>Search </h5> </div>
           </div>
-          <div class="box" style={{ background: "#F12711" }}>
+          <NavLink to="/login" style={{ textDecoration: 'none' }}>
+            <div class="box" style={{ background: "#F12711" }}>
             <div > <BiSolidLogIn size={40} color="white" /></div>
             <div> <h5>Doner </h5> </div>
             <div> <h5>Login </h5> </div>
-
           </div>
+          </NavLink>
+          
           <div class="box" style={{ background: "#f5af19 " }}>
             <div > <FaHospital size={40} color="white" /></div>
             <div> <h5>Blood </h5> </div>
             <div> <h5>Donation </h5> </div>
             <div> <h5>Blood </h5> </div>
-
           </div>
           <div class="box" style={{ background: "#2981c0" }}>
             <div > <FaUserCircle size={40} color="white" /></div>

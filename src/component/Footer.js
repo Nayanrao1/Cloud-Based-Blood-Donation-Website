@@ -29,7 +29,7 @@ function Footer() {
             <div class="col-md-4 ">
                 <h4>Connect with Us</h4>
                 <p><a href="#">Facebook</a></p>
-                <p><a href="#">Twitter</a></p>
+                <p><a href="https://twitter.com/home">Twitter</a></p>
                 <p><a href="#">Instagram</a></p>
             </div>
         </div>

@@ -93,7 +93,7 @@ const Login = () => {
 const Wrapper = styled.div`
 .login-background{
     background: #f0d7d7;
-    animation: backgroundChange 10s infinite;
+    animation: backgroundChange 7s infinite;
   }
 
   /*------------ Login container ------------*/
@@ -167,8 +167,9 @@ const Wrapper = styled.div`
     }
   
     .blood-size {
-        width: 110px;
+        width: 60px;
     }
+
   }
 
 `;

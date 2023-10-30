@@ -285,7 +285,7 @@ const Wrapper = styled.div`
     }
   
     .blood-size {
-        width: 110px;
+        width: 60px;
     }
 
   }
