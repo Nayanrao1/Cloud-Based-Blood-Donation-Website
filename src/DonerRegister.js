@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useUserContext } from './context/usercontext';
+import { NavLink } from 'react-router-dom';
 function DonerRegister() {
     const {isLoading,isError,users,donerusers} = useUserContext();
+
   return (
     <Wrapper>
       
@@ -15,8 +17,9 @@ function DonerRegister() {
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>isDoner</th>
             <th>Address</th>
+            <th>Click Here</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -25,8 +28,8 @@ function DonerRegister() {
               <td>{data.name}</td>
               <td>{data.email}</td>
               <td>{data.phone}</td>
-              <td>{data.isDoner}</td>
               <td>{data.address}</td>
+              <td><NavLink to="/userprofile">View Profile </NavLink> </td>
             </tr>
           ))}
         </tbody>

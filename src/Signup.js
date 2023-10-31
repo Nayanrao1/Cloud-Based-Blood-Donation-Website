@@ -32,6 +32,24 @@ function Signup() {
     isDoner: formData.isDoner,
   };
 
+  const handleSendOTP = async () => {
+    try {
+      // Submit email to receive OTP
+      const response = await axios.post('http://localhost:3000/generate-otp', {
+        email: formData.email,
+      });
+      if (response.status === 200) {
+        console.log('OTP sent successfully.');
+      } else {
+        console.error('Failed to send OTP.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+
   const handleSubmit = async(e) => {
     e.preventDefault();
 

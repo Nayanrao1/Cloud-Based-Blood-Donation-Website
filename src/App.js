@@ -9,6 +9,7 @@ import Errorpage from './Errorpage';
 import About from './About';
 import Footer from './component/Footer';
 import DonerRegister from './DonerRegister';
+import UserProfile from './UserProfile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/donerRegister" element = {<DonerRegister/>} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/userprofile" element={<UserProfile />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
       <Footer />

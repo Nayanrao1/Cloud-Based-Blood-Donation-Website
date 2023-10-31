@@ -113,6 +113,52 @@ console.log(donerusers);
         </div>
       </div>
 
+      <div class="container mt-4 mb-4 text-center">
+      <h2 class="container-title">Upcomming Blood Camp</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Blood bank name</h5>
+                        <p class="card-text">Description</p>
+                        <a href="#" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Blood bank name</h5>
+                        <p class="card-text">Description</p>
+                        <a href="#" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Blood bank name</h5>
+                        <p class="card-text">Description</p>
+                        <a href="#" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Blood bank name</h5>
+                        <p class="card-text">Description</p>
+                        <a href="#" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
     </Wrapper>
   )
