@@ -1,9 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { useTokenproviderContext } from './context/usercontext';
 const Login = () => {
+    const usenavigate= useNavigate();
+    const {storeToken, isToken} = useTokenproviderContext();
+    const [loginData, setloginData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        setloginData({
+            ...loginData,
+            [name]: value
+        });
+        console.log(loginData);
+    }
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            })
+            const data = await response.json();
+            console.log("login json",data);
+        
+            if(response.ok){
+                console.log("before", isToken)
+                alert("login successfull");
+                await storeToken(data.token);
+                usenavigate('/');
+            }else{
+                alert("Login failed");
+                setloginData({
+                    email: '',
+                    password: '',
+                })
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <Wrapper>
@@ -49,23 +97,31 @@ const Login = () => {
                                     <h2 className="text-success">Hello,Again</h2>
                                     <p>We are happy to have you back.</p>
                                 </div>
-                                <div className="input-group mb-3">
-                                    <input
-                                        type="text"
-                                        className="form-control form-control-lg bg-light fs-6"
-                                        placeholder="Email address"
-                                    />
-                                </div>
-                                <div className="input-group mb-1">
-                                    <input
-                                        type="password"
-                                        className="form-control form-control-lg bg-light fs-6"
-                                        placeholder="Password"
-                                    />
-                                </div>
-                                <div className="input-group mb-3">
-                                    <button className="btn btn-lg btn-primary w-100 fs-6">Login</button>
-                                </div>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="input-group mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control form-control-lg bg-light fs-6"
+                                            placeholder="Email address"
+                                            name="email"
+                                            value={loginData.email}
+                                            onChange={onChange}
+                                        />
+                                    </div>
+                                    <div className="input-group mb-1">
+                                        <input
+                                            type="password"
+                                            className="form-control form-control-lg bg-light fs-6"
+                                            placeholder="Password"
+                                            name="password"
+                                            value={loginData.password}
+                                            onChange={onChange}
+                                        />
+                                    </div>
+                                    <div className="input-group mb-3">
+                                        <button className="btn btn-lg btn-primary w-100 fs-6">Login</button>
+                                    </div>
+                                </form>
                                 <div className="input-group mb-3">
                                     <button className="btn btn-lg btn-light w-100 fs-6">
                                         <img src="/images/img/google.png" style={{ width: 20 }} className="me-2" />

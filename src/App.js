@@ -10,6 +10,7 @@ import About from './About';
 import Footer from './component/Footer';
 import DonerRegister from './DonerRegister';
 import UserProfile from './UserProfile';
+import Logout from './Logout';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path="/donerRegister" element = {<DonerRegister/>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/userprofile" element={<UserProfile />} />

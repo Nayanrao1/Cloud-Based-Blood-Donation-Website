@@ -1,8 +1,7 @@
 
 const mongoose = require('mongoose');
-
 // Connection details
-const uri = 'mongodb://127.0.0.1:27017/Blood-portal'; // MongoDB server URI including database name
+const uri = process.env.MONGO_DB_URI//127.0.0.1:27017/Blood-portal // MongoDB server URI including database name
 
 // Connect to MongoDB using Mongoose
 mongoose

@@ -15,10 +15,12 @@ function DonerRegister() {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Blood+-</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
             <th>Click Here</th>
+            <th>Delete User</th>
            
           </tr>
         </thead>
@@ -26,10 +28,12 @@ function DonerRegister() {
           {donerusers.map((data, index) => (
             <tr key={index}>
               <td>{data.name}</td>
+              <td>{data.bloodGroup}</td>
               <td>{data.email}</td>
               <td>{data.phone}</td>
               <td>{data.address}</td>
               <td><NavLink to="/userprofile">View Profile </NavLink> </td>
+              <td>Click Here</td>
             </tr>
           ))}
         </tbody>

@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from "react-router-dom";
 import './App.css';
@@ -81,44 +81,30 @@ console.log(donerusers);
         </div>
       </div>
 
-      {/* four container */}
-      <div className='four-card'>
-        <div className="centered-container">
-          <div class="box" style={{ background: "#941313" }}>
-            <div > <BiSolidDonateBlood size={40} color="white" /></div>
-            <div> <h5>Blood </h5> </div>
-            <div> <h5>Availability </h5> </div>
-            <div> <h5>Search </h5> </div>
-          </div>
-          <NavLink to="/login" style={{ textDecoration: 'none' }}>
-            <div class="box" style={{ background: "#F12711" }}>
-            <div > <BiSolidLogIn size={40} color="white" /></div>
-            <div> <h5>Doner </h5> </div>
-            <div> <h5>Login </h5> </div>
-          </div>
-          </NavLink>
-          
-          <div class="box" style={{ background: "#f5af19 " }}>
-            <div > <FaHospital size={40} color="white" /></div>
-            <div> <h5>Blood </h5> </div>
-            <div> <h5>Donation </h5> </div>
-            <div> <h5>Blood </h5> </div>
-          </div>
-          <div class="box" style={{ background: "#2981c0" }}>
-            <div > <FaUserCircle size={40} color="white" /></div>
-            <div> <h5>Register </h5> </div>
-            <div> <h5>Voluntary </h5> </div>
-            <div> <h5>BloodCamp </h5> </div>
-          </div>
-        </div>
-      </div>
+{/* four container */}
+      <div className="container4">
+    <div className="square" style={{ background: "#941313" }}>
+      <div className="square-content" ><BiSolidDonateBlood size={40} color="white" />Blood Availability Search</div>
+    </div>
+    <div className="square" style={{ background: "#F12711" }}>
+      <div className="square-content"><BiSolidLogIn size={40} color="white" />Doner Login</div>
+    </div>
+    <div className="square" style={{ background: "#f5af19 " }}>
+      <div className="square-content"><FaHospital size={40} color="white" />Blood Donation Camp</div>
+    </div>
+    <div className="square" style={{ background: "#2981c0" }}>
+      <div className="square-content"><FaUserCircle size={40} color="white" /><br />Register Voluntary </div>
+    </div>
+  </div>
 
+      {/* four container */}
+      
       <div class="container mt-4 mb-4 text-center">
       <h2 class="container-title">Upcomming Blood Camp</h2>
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <img src="/images/img/nomore.png" class="card-img-top" alt="Advertisement Image"/>
                     <div class="card-body">
                         <h5 class="card-title">Blood bank name</h5>
                         <p class="card-text">Description</p>
@@ -128,7 +114,7 @@ console.log(donerusers);
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <img src="/images/img/nomore.png" class="card-img-top" alt="Advertisement Image"/>
                     <div class="card-body">
                         <h5 class="card-title">Blood bank name</h5>
                         <p class="card-text">Description</p>
@@ -138,7 +124,7 @@ console.log(donerusers);
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <img src="/images/img/nomore.png" class="card-img-top" alt="Advertisement Image"/>
                     <div class="card-body">
                         <h5 class="card-title">Blood bank name</h5>
                         <p class="card-text">Description</p>
@@ -148,7 +134,7 @@ console.log(donerusers);
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/50" class="card-img-top" alt="Advertisement Image"/>
+                    <img src="/images/img/nomore.png" class="card-img-top" alt="Advertisement Image"/>
                     <div class="card-body">
                         <h5 class="card-title">Blood bank name</h5>
                         <p class="card-text">Description</p>
@@ -219,15 +205,66 @@ const Wrapper = styled.div`
   width: 100%;
 }
 
-.four-card{
-  background-image: url('/images/img/img6.jpg');
-  background-size: cover; 
-  width: 100%;
-}
+
 @media (max-width: 768px) {
   .centered-container {
       flex-direction: column; /* Stack boxes vertically on smaller screens */
   }
 }
+
+
+.container4 {
+  display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: -10px;
+    background-color: yellow;
+    background-image: url('/images/img/img6.jpg');
+    background-size: cover; 
+    padding: 11px 50px;
+}
+
+.square {
+  box-sizing: border-box;
+    width: calc(21% - 20px);
+    margin: 10px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    height: 137px;
+    border-radius: 50px;
+}
+
+.square-content {
+  text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .square {
+     /* Adjust for spacing between squares */
+    width: calc(43% - 16px);
+    margin: 10px;
+  }
+
+
+  @media (max-width: 290px) {
+  .square {
+     /* Adjust for spacing between squares */
+    width: calc(92% - 16px);
+    margin: 10px;
+  }
+}
+
+
 `;
 export default Home

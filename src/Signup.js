@@ -1,33 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { NavLink , useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import axios from "axios";
 function Signup() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
+    password:'',
     bloodGroup: '',
     isDoner: false
   });
-
-  const handleChange = (e) => {
-    console.log(formData);
+  const navigate = useNavigate();
+  
+  const handleChange = async(e) => {
+    console.log(formData ,"before");
     const { name, value, type, checked } = e.target;
-    setFormData({
+    await setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value,
     });
   };
+  useEffect(()=>{
+    console.log(formData ,"after");
+  },[formData])
 
   const formDataOrdered = {
     name: formData.name,
     email: formData.email,
     phone: formData.phone,
     address: formData.address,
+    password:formData.password,
     bloodGroup: formData.bloodGroup,
     isDoner: formData.isDoner,
   };
@@ -50,33 +55,37 @@ function Signup() {
 
 
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch('http://localhost:3000/users', {
+      const response = await fetch('http://localhost:3000/api/auth/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formDataOrdered),
       });
-
+      console.log('response check', response);
+      if (response.status === 400) {
+        alert("user is already exist please check your email id");
+        navigate('/signup');
+      }
       if (response.ok) {
         // Handle a successful response (e.g., show a success message)
         console.log('User created successfully.');
-      } else {
-        // Handle errors (e.g., show an error message)
-        console.error('Failed to create user.');
+        navigate('/login');
+      }
+      if(response.status == 500){
+        alert("check the credintials that you have entered")
       }
     } catch (error) {
       console.error('Error:', error);
+      window.location.href = '*';
     }
-    window.location.href = '/';
-  
+    // window.location.href = '/';
   };
 
-  
+
 
 
   return (
@@ -164,6 +173,16 @@ function Signup() {
                       onChange={handleChange}
                     />
                   </div>
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control form-control-lg bg-light fs-6"
+                      placeholder="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </div>
 
                   <div className="input-group mb-1">
                     <select
@@ -196,9 +215,6 @@ function Signup() {
                   <div className="input-group mb-3">
                     <button className="btn btn-lg btn-primary w-100 fs-6">Register</button>
                   </div>
-
-
-
                 </form>
 
 

@@ -3,10 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { FaHome, FaUserPlus } from 'react-icons/fa';
+import { useTokenproviderContext } from '../context/usercontext';
 function Navbar() {
+  const {isLoggedin} = useTokenproviderContext();
+  console.log("navbarrr",isLoggedin);
   return (
     <Wrapper>
-      
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
       <div className="container">
         {/* Logo and Name on the left */}
@@ -31,13 +33,16 @@ function Navbar() {
           <span className="navbar-text mr-5"><FaHome size={40} color="red" /> {/* Use an icon */}</span>
           </NavLink>
 
-          <NavLink to="/signup" style={{ textDecoration: 'none' }}>
+        {isLoggedin?(<NavLink to="/logout" style={{ textDecoration: 'none' }}>
+            <span className="navbar-text mr-5 text-success">LogOut</span>
+          </NavLink>):(<><NavLink to="/signup" style={{ textDecoration: 'none' }}>
           <span className="navbar-text mr-5"><FaUserPlus size={40} color="green" /> {/* Sign Up icon */}</span>
           </NavLink>
 
           <NavLink to="/login" style={{ textDecoration: 'none' }}>
             <span className="navbar-text mr-5 text-success">Login</span>
-          </NavLink>
+          </NavLink></>)}
+          
         </div>
       </div>
     </nav>
